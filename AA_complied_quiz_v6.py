@@ -362,7 +362,7 @@ class Quiz:
 
             # setting the format for the question
             question = "{} {} {}".format(num1, operator, num2)
-            display_question = "{} × {} = ".format(num1, num2)
+            display_question = "{} * {} = ".format(num1, num2)
 
         else:
             display_question = "{} =".format(question)

@@ -336,7 +336,7 @@ class Quiz:
             question = "{} {} {}".format(num1, operator, num2)
 
             # creating a question that has the more recognisable symbol
-            display_question = "{} × {} = ".format(num1, num2)
+            display_question = "{} * {} = ".format(num1, num2)
             self.questions_label.config(text=display_question)
             answer = eval(question)
             print("{} {}".format(display_question, answer))

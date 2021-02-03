@@ -226,7 +226,8 @@ class Quiz:
 
         self.stats_button = Button(self.help_export_frame, text="quiz Stats",
                                    font="Arial 15 bold", bg="#003366", fg="white",
-                                   command=lambda: self.to_stats(self.round_results_list, self.quiz_round_result))
+                                   command=lambda: self.to_stats(self.round_results_list, self.quiz_round_result,
+                                                                 self.num_questions))
         self.stats_button.grid(row=4, column=1, padx=20)
 
         # Quit Button
@@ -350,7 +351,7 @@ class Quiz:
 
             # setting the format for the question
             question = "{} {} {}".format(num1, operator, num2)
-            display_question = "{} × {} = ".format(num1, num2)
+            display_question = "{} * {} = ".format(num1, num2)
 
         else:
             display_question = "{} =".format(question)
@@ -370,13 +371,15 @@ class Quiz:
         root.destroy()
 
     # Going to the stats function
-    def to_stats(self, round_results, quiz_round_result):
-        QuizStats(self, round_results, quiz_round_result)
+    def to_stats(self, round_results, quiz_round_result, num_questions):
+        QuizStats(self, round_results, quiz_round_result, num_questions)
 
 
 class QuizStats:
-    def __init__(self, partner, quiz_history, quiz_results):
+    def __init__(self, partner, quiz_history, quiz_results, num_questions):
 
+        # get the number of questions
+        num_done = num_questions.get()
         # disable stats button
         partner.stats_button.config(state=DISABLED)
 
@@ -429,7 +432,7 @@ class QuizStats:
 
         self.incorrect_label = Label(self.detail_frame, font=content,
                                      text="{}"
-                                     .format(quiz_results[1] - quiz_results[0]), fg="#FA2828", anchor="w")
+                                     .format(num_done - quiz_results[1]), fg="#FA2828", anchor="w")
         self.incorrect_label.grid(row=2, column=1, padx=0)
 
         # Round Played (row 2.4)
